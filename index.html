@@ -8,7 +8,9 @@
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Prof Kelly Edmunds">
 <meta property="og:description" content="Helping universities improve student belonging, engagement and success through research, strategy and evidence-informed practice.">
-<meta property="og:image" content="kelly-edmunds.jpg">
+<meta property="og:image" content="https://profkellyedmunds.github.io/kelly-edmunds.jpg">
+<meta property="og:url" content="https://profkellyedmunds.github.io/">
+<link rel="canonical" href="https://profkellyedmunds.github.io/">
 <meta name="theme-color" content="#097c87">
 <!-- Browser tab icon: a sunrise in the site palette -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CclipPath id='c'%3E%3Crect width='32' height='32' rx='8'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url%28%23c%29'%3E%3Crect width='32' height='32' fill='%23097c87'/%3E%3Ccircle cx='16' cy='21' r='9' fill='%23f9d779'/%3E%3Crect y='21' width='32' height='5' fill='%23fca47c'/%3E%3Crect y='26' width='32' height='6' fill='%2323ced9'/%3E%3C/g%3E%3C/svg%3E">
@@ -295,6 +297,45 @@ section.panel { padding: 56px 0 88px; }
 .pub-empty { padding: 24px; color: var(--muted); border-radius: var(--r); border: 1px dashed var(--line); }
 .pub-note { margin-top: 32px; font-size: .92rem; color: var(--muted); max-width: 46em; }
 @media (max-width: 640px) { .pub-year { grid-template-columns: 1fr; gap: 0; } }
+.pub.flash { animation: flash 2.4s ease; border-radius: var(--r-sm); }
+@keyframes flash { 0%, 60% { background: var(--sun-soft); box-shadow: -10px 0 0 var(--sun-soft), 10px 0 0 var(--sun-soft); } 100% { background: transparent; box-shadow: none; } }
+
+/* Co-author map */
+.pub-top { display: grid; grid-template-columns: 1fr 440px; gap: 40px; align-items: start; margin-bottom: 8px; }
+.pub-top .section-head { margin-bottom: 28px; }
+.coauthors { margin: 0; }
+.coauthors figcaption { font-size: .88rem; color: var(--muted); margin-bottom: 6px; }
+.coauthors figcaption strong { color: var(--ink); font-weight: 600; margin-right: 4px; }
+.map-wrap { position: relative; }
+#coauthor-map { display: block; width: 100%; height: auto; aspect-ratio: 440 / 380; }
+#coauthor-map .edge { stroke: var(--muted); stroke-opacity: .28; stroke-width: 1; }
+#coauthor-map.hover .edge { stroke-opacity: .1; }
+#coauthor-map .edge.lit { stroke: var(--jade-ink); stroke-opacity: .9; stroke-width: 1.6; }
+#coauthor-map .node { cursor: pointer; outline: none; }
+#coauthor-map .node circle.hit { fill: transparent; stroke: none; }
+#coauthor-map .node circle { stroke: var(--ink); stroke-opacity: .45; stroke-width: 1; }
+#coauthor-map .node:hover circle:not(.hit), #coauthor-map .node:focus-visible circle:not(.hit) { stroke: var(--ink); stroke-width: 2; }
+#coauthor-map .node.on circle:not(.hit) { stroke: var(--aqua); stroke-width: 3; }
+#coauthor-map text { font: 500 9.5px var(--font); fill: var(--ink); pointer-events: none; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; }
+.map-panel {
+  position: absolute; inset: 0 0 auto auto; width: min(100%, 300px); max-height: 100%; overflow: auto;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px;
+  box-shadow: 0 10px 30px rgba(18, 52, 58, .18);
+}
+.mp-head { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; margin-bottom: 6px; }
+.mp-head h3 { font-size: 1rem; margin: 0; }
+.mp-head h3 span { display: block; font-size: .8rem; font-weight: 500; color: var(--jade-ink); margin-top: 2px; }
+.mp-x { border: 0; background: var(--peach-soft); color: var(--ink); width: 28px; height: 28px; border-radius: 50%; font-size: 1.1rem; line-height: 1; cursor: pointer; flex: none; }
+.map-panel ol { list-style: none; margin: 0; padding: 0; }
+.map-panel ol button {
+  display: block; width: 100%; text-align: left; font: inherit; font-size: .88rem; line-height: 1.35; color: var(--ink);
+  background: none; border: 0; border-radius: var(--r-sm); padding: 8px; cursor: pointer;
+}
+.map-panel ol button:hover, .map-panel ol button:focus-visible { background: var(--aqua-soft); }
+.map-panel ol small { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
+.map-key { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 0; margin: 8px 0 0; font-size: .8rem; color: var(--muted); }
+.map-key span { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+@media (max-width: 1000px) { .pub-top { grid-template-columns: 1fr; gap: 8px; } .coauthors { margin-bottom: 24px; } }
 
 /* ---------- Writing ---------- */
 .books { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -567,18 +608,36 @@ footer.site .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: 
      ====================================================================== -->
 <section class="panel" id="publications">
   <div class="wrap">
-    <div class="section-head">
-      <h2>Publications</h2>
-      <p>Peer-reviewed articles, books, chapters and preprints.</p>
+    <div class="pub-top">
+      <div>
+        <div class="section-head">
+          <h2>Publications</h2>
+          <p>Peer-reviewed articles, books, chapters and preprints.</p>
+        </div>
+        <div class="pub-tools">
+          <label class="search">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="pub-search" type="search" placeholder="Search titles, authors, journals…" aria-label="Search publications">
+          </label>
+          <div class="filters" id="pub-filters" role="group" aria-label="Filter by type"></div>
+        </div>
+        <p class="pub-meta" id="pub-meta">Loading the latest list from OpenAlex…</p>
+      </div>
+
+      <!-- Co-author map: drawn automatically from the publication list -->
+      <figure class="coauthors" id="coauthors">
+        <figcaption><strong>Co-authors</strong> <span id="coauthor-count"></span>Click a person to see the papers in common.</figcaption>
+        <div class="map-wrap">
+          <svg id="coauthor-map" role="group" aria-label="Map of co-authors, joined where two people appear on the same paper"></svg>
+          <div class="map-panel" id="coauthor-panel" hidden role="dialog" aria-label="Papers in common"></div>
+        </div>
+        <ul class="map-key">
+          <li><span style="background:var(--jade)"></span>Higher education</li>
+          <li><span style="background:#fca47c"></span>Public health</li>
+          <li><span style="background:#a1cca6"></span>Ecology and conservation</li>
+        </ul>
+      </figure>
     </div>
-    <div class="pub-tools">
-      <label class="search">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input id="pub-search" type="search" placeholder="Search titles, authors, journals…" aria-label="Search publications">
-      </label>
-      <div class="filters" id="pub-filters" role="group" aria-label="Filter by type"></div>
-    </div>
-    <p class="pub-meta" id="pub-meta">Loading the latest list from OpenAlex…</p>
     <div id="pub-list"></div>
     <noscript><p class="pub-empty">The publication list needs JavaScript. The full record is on <a href="https://orcid.org/0000-0001-5351-3721">ORCID</a>.</p></noscript>
     <p class="pub-note">This list is built from <a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a>, linked to <a href="https://orcid.org/0000-0001-5351-3721" target="_blank" rel="noopener">ORCID 0000-0001-5351-3721</a>, each time the page opens, so new papers appear on their own. Preprints are hidden once the published version appears. <span id="pub-source"></span></p>
@@ -634,7 +693,7 @@ footer.site .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: 
   <div class="wrap">
     <div class="section-head">
       <h2>Keynotes, talks and panels</h2>
-      <p>Keynotes, talks and panels in the UK, Europe and the US.</p>
+      <p>Invited and contributed talks in the UK, Europe and the US.</p>
     </div>
     <ul class="rows">
       <li><span class="when">Oct 2026</span><span><span class="kind key">Keynote</span>Norwich Medical School away day: <em>Belonging by design: fostering inclusion and connection in medical education</em></span></li>
@@ -812,41 +871,47 @@ footer.site .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: 
 
 <script>
 /* ==========================================================================
-   PUBLICATION SETTINGS — the only part of the script you should need to edit
+   PUBLICATION SETTINGS — the only part of the code you should need to edit.
+   Keep every piece of text inside "double quotes" (apostrophes like Master's
+   are fine), and put a comma between entries. If something here has a typo,
+   the rest of the site keeps working and the Publications tab says so.
    ========================================================================== */
 
 /* Kelly's ORCID. OpenAlex finds her works through it. */
-var ORCID = '0000-0001-5351-3721';
+var ORCID = "0000-0001-5351-3721";
 
 /* Items OpenAlex doesn't have. Copy a line to add one.
-   type: 'article', 'book', 'book-chapter' or 'preprint'.
-   Papers not yet published get a status ('In preparation', 'In revision',
-   'Submitted'...). They are listed under "In progress". Delete the line once
+   type: "article", "book", "book-chapter" or "preprint".
+   Papers not yet published get a status ("In preparation", "In revision",
+   "Submitted"...). They are listed under "In progress". Delete the line once
    the paper is out, because OpenAlex will then pick it up by itself. */
 var EXTRA = [
-  { title: 'From voice to agency: co-creating belonging through student-led podcasting', authors: 'Standen G, Edmunds K, Marlowe F, Perry C, Rush F, Salter L, Flannery L', year: 2026, venue: 'International Journal of Students as Partners', type: 'article', status: 'In preparation' },
-  { title: 'A Qualitative Study of Pre-Arrival Nervousness Among Postgraduate Taught Students Entering a United Kingdom University', authors: 'Hayman R, Hibbs A, Edmunds K, Polman R', year: 2026, venue: 'Studies in Graduate and Postdoctoral Education', type: 'article', status: 'In revision' },
-  { title: 'The disparity in research attention focused on the postgraduate student experience compared to their undergraduate counterparts', authors: 'Sydney M, Gilani D, Edmunds K', year: 2026, venue: 'Innovations in Education and Teaching International', type: 'article', status: 'In preparation' },
-  { title: 'Developing a cross-discipline approach to building student belonging by combining the performing arts with science', authors: 'Edmunds K, Leggett HC', year: 2025, venue: 'Journal of the Foundation Year Network', volume: '7', pages: '70–81', type: 'article' },
-  { title: 'Building an oasis of calm in a sea of chaos: supporting students during COVID-19 disruption', authors: 'Edmunds K, Gulliver B', year: 2021, venue: 'Journal of the Foundation Year Network', volume: '4', pages: '13–23', type: 'article' },
-  { title: 'Remotely teaching practical science in student kitchens', authors: 'Gulliver BS, Edmunds K', year: 2021, venue: 'Journal of the Foundation Year Network', volume: '4', pages: '41–51', type: 'article' },
-  { title: 'Chapter in Contextualising the Biosciences (working title)', authors: 'Edmunds K', year: 2026, venue: 'Oxford University Press, ed. T Allen', type: 'book-chapter', status: 'Forthcoming' },
-  { title: 'Biological Sciences: Exploring the Science of Life (multiple chapter contributions)', authors: 'Scott et al. (eds), incl. Edmunds K', year: 2022, venue: 'Oxford University Press', type: 'book-chapter' }
+  { title: "From voice to agency: co-creating belonging through student-led podcasting", authors: "Standen G, Edmunds K, Marlowe F, Perry C, Rush F, Salter L, Flannery L", year: 2026, venue: "International Journal of Students as Partners", type: "article", status: "In preparation" },
+  { title: "The disparity in research attention focused on the postgraduate student experience compared to their undergraduate counterparts", authors: "Sydney M, Gilani D, Edmunds K", year: 2026, venue: "Innovations in Education and Teaching International", type: "article", status: "In preparation" },
+  { title: "Developing a cross-discipline approach to building student belonging by combining the performing arts with science", authors: "Edmunds K, Leggett HC", year: 2025, venue: "Journal of the Foundation Year Network", volume: "7", pages: "70–81", type: "article" },
+  { title: "Building an oasis of calm in a sea of chaos: supporting students during COVID-19 disruption", authors: "Edmunds K, Gulliver B", year: 2021, venue: "Journal of the Foundation Year Network", volume: "4", pages: "13–23", type: "article" },
+  { title: "Remotely teaching practical science in student kitchens", authors: "Gulliver BS, Edmunds K", year: 2021, venue: "Journal of the Foundation Year Network", volume: "4", pages: "41–51", type: "article" },
+  { title: "Chapter in Contextualising the Biosciences (working title)", authors: "Edmunds K", year: 2026, venue: "Oxford University Press, ed. T Allen", type: "book-chapter", status: "Forthcoming" },
+  { title: "Biological Sciences: Exploring the Science of Life (multiple chapter contributions)", authors: "Scott et al. (eds), incl. Edmunds K", year: 2022, venue: "Oxford University Press", type: "book-chapter" }
 ];
 
 /* Corrections to what OpenAlex says, by DOI (e.g. wrong author order). */
 var EDITS = {
-  '10.35542/osf.io/twdqs_v1': { authors: 'Ivimey-Cook ER, Bell E, Hibbs AE, Strudwick K, Edmunds K', venue: 'EdArXiv preprint; submitted to Student Success' },
-  '10.35542/osf.io/5fyq4_v2': { authors: 'Ivimey-Cook ER, Nash W, de Coriolis J-C, Leggett HC, Wagstaff L, Edmunds K', venue: 'EdArXiv preprint; submitted to Journal of Learning Development in Higher Education' },
-  '10.63608/ssj.3756': { authors: 'Edmunds K, Harrington C, Lewis R' },
-  '10.4324/9781003611578': { venue: 'Routledge (co-edited volume)' },
-  '10.4324/9781003427575-5': { venue: 'Supporting the Student Journey into Higher Education, SEDA-Routledge' },
-  '10.1007/978-3-031-81795-3_2': { venue: 'Accessibility, Inclusivity and Diversity in Education and Beyond, Springer Nature' }
+  "10.35542/osf.io/twdqs_v1": { authors: "Ivimey-Cook ER, Bell E, Hibbs AE, Strudwick K, Edmunds K", venue: "EdArXiv preprint; submitted to Student Success" },
+  "10.35542/osf.io/5fyq4_v2": { authors: "Ivimey-Cook ER, Nash W, de Coriolis J-C, Leggett HC, Wagstaff L, Edmunds K", venue: "EdArXiv preprint; submitted to Journal of Learning Development in Higher Education" },
+  "10.63608/ssj.3756": { authors: "Edmunds K, Harrington C, Lewis R" },
+  "10.4324/9781003611578": { venue: "Routledge (co-edited volume)" },
+  "10.4324/9781003427575-5": { venue: "Supporting the Student Journey into Higher Education, SEDA-Routledge" },
+  "10.1007/978-3-031-81795-3_2": { venue: "Accessibility, Inclusivity and Diversity in Education and Beyond, Springer Nature" }
 };
 
-/* DOIs to hide, e.g. '10.1234/abcd'. */
-var HIDE = [];
+/* DOIs to hide, e.g. "10.1234/abcd". */
+var HIDE = [
+  "10.4324/9781003611578-21"   // a duplicate "chapter" record of the Student Belonging in Action book
+];
+</script>
 
+<script>
 /* ==========================================================================
    Site behaviour (no need to edit below here)
    ========================================================================== */
@@ -921,6 +986,9 @@ var HIDE = [];
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
 
+</script>
+
+<script>
 /* ---------- Publications, live from OpenAlex ----------
    1. Download every work OpenAlex links to the ORCID.
    2. Drop data sets, corrections and repository copies (Zenodo etc.).
@@ -931,6 +999,9 @@ var HIDE = [];
    page) is shown instead, plus anything in EXTRA. */
 (function () {
   'use strict';
+  /* If the settings above have a typo they won't load: carry on without them */
+  var settingsProblem = typeof EXTRA === 'undefined' || typeof EDITS === 'undefined' || typeof HIDE === 'undefined' || typeof ORCID === 'undefined';
+  if (settingsProblem) { window.EXTRA = []; window.EDITS = {}; window.HIDE = []; window.ORCID = '0000-0001-5351-3721'; }
   var KEEP = ['article', 'review', 'preprint', 'book-chapter', 'book', 'dissertation', 'letter', 'editorial'];
   var DROP_DOI = /^10\.(5281|6084|5061)\//;
   var DROP_TITLE = /^(addendum|correction|corrigendum|erratum|retraction|author response|reply to|data from|supplementary|additional file)/i;
@@ -965,11 +1036,20 @@ var HIDE = [];
     });
     return Object.keys(out);
   }
-  function samePaper(a, b) {
+  function overlap(a, b) {
     var wa = words(a), wb = words(b);
-    if (!wa.length || !wb.length) return false;
+    if (!wa.length || !wb.length) return 0;
     var shared = wa.filter(function (w) { return wb.indexOf(w) > -1; }).length;
-    return shared / Math.min(wa.length, wb.length) >= 0.75;
+    return shared / Math.min(wa.length, wb.length);
+  }
+  function samePaper(a, b) { return overlap(a, b) >= 0.75; }
+  /* A preprint, repository copy or record without a DOI is a "version" that can
+     be merged into a published paper. Two published papers with different DOIs
+     are always kept apart, however alike their titles. */
+  function isVersion(w) { var s = src(w); return w.type === 'preprint' || !w.doi || !s || s.type === 'repository'; }
+  function sameWork(a, b) {
+    return samePaper(a.title, b.title) &&
+      (cleanDoi(a.doi) === cleanDoi(b.doi) || isVersion(a) || isVersion(b));
   }
   function shortName(n) {
     var parts = String(n || '').trim().split(/\s+/).filter(Boolean);
@@ -1008,7 +1088,8 @@ var HIDE = [];
       year: w.publication_year, date: w.publication_date || '', venue: (s && s.display_name) || '',
       volume: b.volume || '', issue: b.issue || '',
       pages: [b.first_page, b.last_page].filter(Boolean).join('–'),
-      type: w.type, doi: doi, url: url, oa_url: oaUrl && oaUrl !== url ? oaUrl : ''
+      type: w.type, doi: doi, url: url, oa_url: oaUrl && oaUrl !== url ? oaUrl : '',
+      people: (w.authorships || []).map(function (a) { return a.author && a.author.display_name; }).filter(Boolean)
     };
   }
 
@@ -1021,7 +1102,7 @@ var HIDE = [];
     var groups = [];
     kept.forEach(function (w) {
       for (var i = 0; i < groups.length; i++) {
-        if (samePaper(groups[i][0].title, w.title)) { groups[i].push(w); return; }
+        if (sameWork(groups[i][0], w)) { groups[i].push(w); return; }
       }
       groups.push([w]);
     });
@@ -1035,8 +1116,10 @@ var HIDE = [];
   }
   function addExtra(out) {
     EXTRA.forEach(function (e) {
-      // Work in progress is always shown (its title can look like a published paper's)
-      if (!e.status && out.some(function (i) { return samePaper(e.title, i.title); })) return;
+      if (e.status) {
+        // work in progress gives way once a published version with the same title appears
+        if (out.some(function (i) { return !i.status && i.type !== 'preprint' && overlap(e.title, i.title) >= 0.9; })) return;
+      } else if (out.some(function (i) { return samePaper(e.title, i.title); })) return;
       out.push(Object.assign({ volume: '', issue: '', pages: '', doi: '', url: '', oa_url: '', date: String(e.year) }, e));
     });
     return sortItems(out);
@@ -1060,7 +1143,7 @@ var HIDE = [];
     var tags = '<span class="tagpill t-' + esc(p.type) + '">' + esc(LABEL[p.type] || 'Other') + '</span>';
     if (p.oa_url) tags += '<a class="tagpill oa" href="' + esc(p.oa_url) + '" target="_blank" rel="noopener">Free to read ' + ext + '</a>';
     if (p.status) tags += '<span class="tagpill t-status">' + esc(p.status) + '</span>';
-    return '<li class="pub">' + title +
+    return '<li class="pub" data-k="' + esc(pubKey(p)) + '">' + title +
       (p.authors ? '<div class="authors">' + esc(p.authors).replace(/(Edmunds\s+K[A-Z]*)/g, '<b>$1</b>') + '</div>' : '') +
       (venue ? '<div class="venue">' + venue + '</div>' : '') +
       '<div class="tags">' + tags + '</div></li>';
@@ -1108,9 +1191,235 @@ var HIDE = [];
     document.getElementById('pub-meta').textContent = published + ' publications' +
       (pending ? ' and ' + pending + ' in progress' : '') +
       (live ? ', fetched live from OpenAlex just now' : ' (saved copy)');
-    document.getElementById('pub-source').textContent = live ? ''
-      : 'OpenAlex could not be reached just now, so this is a saved copy of the list.';
+    document.getElementById('pub-source').textContent = (live ? ''
+      : 'OpenAlex could not be reached just now, so this is a saved copy of the list. ') +
+      (settingsProblem ? 'Note: the publication settings (EXTRA, EDITS, HIDE) have a typo, so hand-added items are missing.' : '');
     render();
+    drawMapSafe(items);
+  }
+
+  /* ---------- Find a paper in the list (used by the co-author map) ---------- */
+  function pubKey(p) { return p.doi || words(p.title).join(' '); }
+  function showPaper(key) {
+    state.group = 'all'; state.q = '';
+    var search = document.getElementById('pub-search');
+    if (search) search.value = '';
+    [].forEach.call(filtersEl.children, function (x, i) { x.setAttribute('aria-pressed', i === 0 ? 'true' : 'false'); });
+    render();
+    var row = [].filter.call(listEl.querySelectorAll('.pub'), function (r) { return r.getAttribute('data-k') === key; })[0];
+    if (!row) return;
+    row.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash');
+    var link = row.querySelector('a.title');
+    if (link) link.focus({ preventScroll: true });
+  }
+
+  /* ---------- Co-author map ----------
+     One dot per co-author, joined where two people appear on the same paper.
+     Dot size is the number of papers shared with Kelly; colour is the research
+     strand of most of those papers. Work in progress is left out. */
+  var STRANDS = [
+    { key: 'ph', label: 'Public health', color: '#fca47c', test: /ebola|marburg|hazard analysis|virus|infectious|outbreak|epidemi/i },
+    { key: 'ec', label: 'Ecology and conservation', color: '#a1cca6', test: /avian|bird|pigeon|endemic|wildlife|conservation/i },
+    { key: 'he', label: 'Higher education', color: 'var(--jade)', test: /./ }
+  ];
+  function strandOf(p) { for (var i = 0; i < STRANDS.length; i++) if (STRANDS[i].test.test(p.title)) return STRANDS[i]; }
+
+  /* "Hannah C. Leggett" and "Leggett HC" (or "de Coriolis J-C") become "leggett h" */
+  function personKey(name, short) {
+    var n = String(name).normalize('NFKD').replace(/[̀-ͯ]/g, '')
+      .replace(/[‐-―]/g, '-').replace(/\./g, ' ').trim();
+    var parts = n.split(/\s+/), surname, first;
+    if (short && parts.length > 1) { first = parts[parts.length - 1]; surname = parts.slice(0, -1).join(' '); }
+    else { first = parts[0]; surname = parts[parts.length - 1]; }
+    surname = surname.toLowerCase().replace(/^(de|van|von|der|da|di)\s+/, '');
+    return surname + ' ' + first.charAt(0).toLowerCase();
+  }
+  function tidyName(n) { return String(n).replace(/[‐-―]/g, '-'); }
+  /* "Gulliver BS" -> "BS Gulliver", so hand-entered names read like the others */
+  function shortToDisplay(n) { var parts = tidyName(n).split(/\s+/); return parts.length > 1 ? parts.pop() + ' ' + parts.join(' ') : n; }
+  /* Surname for the map label, keeping particles: "Jean-Charles de Coriolis" -> "de Coriolis" */
+  function surnameOf(name) {
+    var parts = name.split(/\s+/), i = parts.length - 1;
+    while (i > 1 && /^(de|van|von|der|da|di|du|le|la)$/.test(parts[i - 1])) i--;
+    return parts.slice(i).join(' ');
+  }
+
+  function coauthors(list) {
+    var people = {}, edges = {}, used = 0;
+    list.forEach(function (p) {
+      if (p.status) return;
+      var names;
+      if (p.people && p.people.length) names = p.people.map(function (n) { return { key: personKey(n, false), name: tidyName(n), full: true }; });
+      else {
+        if (/et al|incl\.|…/.test(p.authors || '')) return;
+        names = String(p.authors || '').split(/,\s*/).filter(Boolean)
+          .map(function (n) { return { key: personKey(n, true), name: shortToDisplay(n), full: false }; });
+      }
+      var seen = {}, keys = [];
+      if (names.length > 1) used++;
+      names.forEach(function (a) {
+        if (a.key === 'edmunds k' || seen[a.key]) return;
+        seen[a.key] = 1; keys.push(a.key);
+        var person = people[a.key] || (people[a.key] = { key: a.key, name: a.name, full: a.full, works: [] });
+        if (a.full && (!person.full || a.name.length > person.name.length)) { person.name = a.name; person.full = true; }
+        person.works.push(p);
+      });
+      function link(a, b) { var k = a < b ? a + '|' + b : b + '|' + a; edges[k] = (edges[k] || 0) + 1; }
+      if (keys.length > 8) {
+        // big team papers: link neighbours in the author list (a loose ring, not a tangle)
+        for (var c = 0; c < keys.length; c++) link(keys[c], keys[(c + 1) % keys.length]);
+      } else {
+        for (var i = 0; i < keys.length; i++) for (var j = i + 1; j < keys.length; j++) link(keys[i], keys[j]);
+      }
+    });
+    var nodes = Object.keys(people).map(function (k) {
+      var p = people[k], tally = {};
+      p.works.forEach(function (w) { var s = strandOf(w).key; tally[s] = (tally[s] || 0) + 1; });
+      p.strand = STRANDS.filter(function (s) { return tally[s.key]; })
+        .sort(function (a, b) { return tally[b.key] - tally[a.key]; })[0];
+      p.n = p.works.length;
+      return p;
+    });
+    return { papers: used, nodes: nodes, edges: Object.keys(edges).map(function (k) { var ab = k.split('|'); return { a: ab[0], b: ab[1], w: edges[k] }; }) };
+  }
+
+  /* A small force layout, run once (no animation), seeded so it is the same every visit */
+  function layout(g, W, H) {
+    var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    var idx = {};
+    g.nodes.forEach(function (n, i) {
+      idx[n.key] = n;
+      var sector = STRANDS.indexOf(n.strand), a = (sector + rnd()) * 2 * Math.PI / STRANDS.length;
+      n.x = W / 2 + Math.cos(a) * W * 0.3 * (0.5 + rnd()); n.y = H / 2 + Math.sin(a) * H * 0.3 * (0.5 + rnd());
+      n.vx = 0; n.vy = 0;
+    });
+    var N = g.nodes, temp = 1;
+    for (var it = 0; it < 450; it++) {
+      for (var i = 0; i < N.length; i++) for (var j = i + 1; j < N.length; j++) {
+        var dx = N[i].x - N[j].x, dy = N[i].y - N[j].y, d2 = dx * dx + dy * dy + 0.01, f = 2400 / d2;
+        N[i].vx += dx * f; N[i].vy += dy * f; N[j].vx -= dx * f; N[j].vy -= dy * f;
+      }
+      g.edges.forEach(function (e) {
+        var a = idx[e.a], b = idx[e.b], dx = b.x - a.x, dy = b.y - a.y, d = Math.sqrt(dx * dx + dy * dy) || 1;
+        var f = (d - 52) * 0.012;
+        a.vx += dx / d * f; a.vy += dy / d * f; b.vx -= dx / d * f; b.vy -= dy / d * f;
+      });
+      N.forEach(function (n) {
+        n.vx += (W / 2 - n.x) * 0.006; n.vy += (H / 2 - n.y) * 0.006;
+        var sp = Math.sqrt(n.vx * n.vx + n.vy * n.vy), cap = 12 * temp;
+        if (sp > cap) { n.vx *= cap / sp; n.vy *= cap / sp; }
+        n.x += n.vx; n.y += n.vy; n.vx *= 0.5; n.vy *= 0.5;
+      });
+      temp = Math.max(0.05, temp * 0.992);
+    }
+    // nudge apart any dots that still overlap
+    function rad(n) { return 3.5 + Math.min(Math.sqrt(n.n) * 2.6, 10); }
+    for (var pass = 0; pass < 60; pass++) {
+      for (var a = 0; a < N.length; a++) for (var b = a + 1; b < N.length; b++) {
+        var ddx = N[b].x - N[a].x, ddy = N[b].y - N[a].y, dd = Math.sqrt(ddx * ddx + ddy * ddy) || 0.1,
+          need = rad(N[a]) + rad(N[b]) + 5;
+        if (dd < need) { var push = (need - dd) / 2 / dd; N[a].x -= ddx * push; N[a].y -= ddy * push; N[b].x += ddx * push; N[b].y += ddy * push; }
+      }
+    }
+    // fit into the drawing area
+    var pad = 26, minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    N.forEach(function (n) { minX = Math.min(minX, n.x); maxX = Math.max(maxX, n.x); minY = Math.min(minY, n.y); maxY = Math.max(maxY, n.y); });
+    var s = Math.min((W - 2 * pad) / (maxX - minX || 1), (H - 2 * pad) / (maxY - minY || 1));
+    var ox = (W - (maxX - minX) * s) / 2, oy = (H - (maxY - minY) * s) / 2;
+    N.forEach(function (n) { n.x = ox + (n.x - minX) * s; n.y = oy + (n.y - minY) * s; });
+    return idx;
+  }
+
+  var mapPanel = document.getElementById('coauthor-panel');
+  function closePerson() {
+    if (!mapPanel || mapPanel.hidden) return;
+    mapPanel.hidden = true; mapPanel.innerHTML = '';
+    var sel = document.querySelector('#coauthor-map .node.on');
+    if (sel) { sel.classList.remove('on'); sel.focus({ preventScroll: true }); }
+  }
+  function openPerson(n, el) {
+    var old = document.querySelector('#coauthor-map .node.on');
+    if (old) old.classList.remove('on');
+    el.classList.add('on');
+    var works = n.works.slice().sort(function (a, b) { return (b.year || 0) - (a.year || 0); });
+    mapPanel.innerHTML =
+      '<div class="mp-head"><h3>' + esc(n.name) + '<span>' + (works.length === 1 ? 'One paper' : works.length + ' papers') + ' together</span></h3>' +
+      '<button type="button" class="mp-x" aria-label="Close">×</button></div>' +
+      '<ol>' + works.map(function (w, i) {
+        return '<li><button type="button" data-i="' + i + '">' + esc(w.title) +
+          '<small>' + esc(w.year || '') + (w.venue ? ' · ' + esc(w.venue) : '') + '</small></button></li>';
+      }).join('') + '</ol>';
+    mapPanel.hidden = false;
+    mapPanel.querySelector('.mp-x').addEventListener('click', closePerson);
+    [].forEach.call(mapPanel.querySelectorAll('ol button'), function (b) {
+      b.addEventListener('click', function () {
+        var w = works[+b.getAttribute('data-i')];
+        closePerson();
+        showPaper(pubKey(w));
+      });
+    });
+    mapPanel.querySelector('.mp-x').focus({ preventScroll: true });
+  }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePerson(); });
+
+  function drawMap(list) {
+    var svg = document.getElementById('coauthor-map');
+    if (!svg) return;
+    closePerson();
+    var W = 440, H = 380;
+    var g = coauthors(list);
+    var idx = layout(g, W, H);
+    var out = '';
+    g.edges.forEach(function (e) {
+      var a = idx[e.a], b = idx[e.b];
+      out += '<line class="edge" x1="' + a.x.toFixed(1) + '" y1="' + a.y.toFixed(1) + '" x2="' + b.x.toFixed(1) + '" y2="' + b.y.toFixed(1) + '" data-a="' + esc(e.a) + '" data-b="' + esc(e.b) + '"/>';
+    });
+    // place labels for people with 2+ shared papers, biggest first, skipping any that would collide
+    var placed = g.nodes.map(function (n) {   // dots count as occupied space too
+      var r = 3.5 + Math.min(Math.sqrt(n.n) * 2.6, 10);
+      return { x: n.x - r, y: n.y - r, w: 2 * r, h: 2 * r };
+    });
+    g.nodes.slice().sort(function (a, b) { return b.n - a.n; }).forEach(function (n) {
+      if (n.n < 2) return;
+      var r = 3.5 + Math.min(Math.sqrt(n.n) * 2.6, 10), txt = surnameOf(n.name), w = txt.length * 5.3, h = 11;
+      [[n.x + r + 3, 'start'], [n.x - r - 3, 'end']].some(function (o) {
+        var x0 = o[1] === 'start' ? o[0] : o[0] - w, box = { x: x0, y: n.y - h / 2, w: w, h: h };
+        if (x0 < 2 || x0 + w > W - 2) return false;
+        var clash = placed.some(function (q) { return box.x < q.x + q.w && q.x < box.x + box.w && box.y < q.y + q.h && q.y < box.y + box.h; });
+        if (clash) return false;
+        placed.push(box); n.label = { x: o[0], anchor: o[1], text: txt }; return true;
+      });
+    });
+    g.nodes.sort(function (a, b) { return a.n - b.n; }).forEach(function (n) {
+      var r = 3.5 + Math.min(Math.sqrt(n.n) * 2.6, 10);
+      var label = n.label ? '<text x="' + n.label.x.toFixed(1) + '" y="' + (n.y + 3.5).toFixed(1) + '" text-anchor="' + n.label.anchor + '">' + esc(n.label.text) + '</text>' : '';
+      out += '<g class="node" tabindex="0" role="button" data-k="' + esc(n.key) + '" aria-label="' + esc(n.name) + ', ' +
+        (n.n === 1 ? 'one paper' : n.n + ' papers') + ' together"><title>' + esc(n.name) + ' · ' +
+        (n.n === 1 ? 'one paper' : n.n + ' papers') + ' together</title><circle class="hit" cx="' + n.x.toFixed(1) + '" cy="' + n.y.toFixed(1) + '" r="' + Math.max(r, 12).toFixed(1) + '"/><circle cx="' + n.x.toFixed(1) + '" cy="' + n.y.toFixed(1) +
+        '" r="' + r.toFixed(1) + '" style="fill:' + n.strand.color + '"/>' + label + '</g>';
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.innerHTML = out;
+    [].forEach.call(svg.querySelectorAll('.node'), function (el) {
+      var n = idx[el.getAttribute('data-k')];
+      function pick(e) { e.stopPropagation(); openPerson(n, el); }
+      el.addEventListener('click', pick);
+      el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(e); } });
+      el.addEventListener('mouseenter', function () { svg.classList.add('hover'); mark(n.key, true); });
+      el.addEventListener('mouseleave', function () { svg.classList.remove('hover'); mark(n.key, false); });
+    });
+    function mark(key, on) {
+      [].forEach.call(svg.querySelectorAll('.edge'), function (l) {
+        if (l.getAttribute('data-a') === key || l.getAttribute('data-b') === key) l.classList.toggle('lit', on);
+      });
+    }
+    svg.onclick = function () { closePerson(); };
+    document.getElementById('coauthor-count').textContent = g.nodes.length + ' co-authors across ' + g.papers + ' papers. ';
+  }
+  function drawMapSafe(list) {
+    try { drawMap(list); }
+    catch (err) { var box = document.getElementById('coauthors'); if (box) box.hidden = true; }
   }
 
   var deb;
@@ -1135,34 +1444,31 @@ var HIDE = [];
       .catch(function () { clearTimeout(timer); boot(addExtra(FALLBACK.slice()), false); });
   }
 
-  /* Saved copy, used only if OpenAlex is unreachable. Refreshed 2 October 2026.
+  /* Saved copy, used only if OpenAlex is unreachable. Refreshed 27 November 2026.
      It doesn't need editing; to change the list, use EXTRA, EDITS or HIDE above. */
   var FALLBACK = [
-    {"title": "‘We Belong Here Too’: Assessing Postgraduate Taught Satisfaction Across Three UK Higher Education Institutions", "authors": "Ivimey-Cook ER, Bell E, Hibbs AE, Strudwick K, Edmunds K", "year": 2026, "date": "2026-09-03", "venue": "EdArXiv preprint; submitted to Student Success", "type": "preprint", "doi": "10.35542/osf.io/twdqs_v1", "url": "https://doi.org/10.35542/osf.io/twdqs_v1"},
-    {"title": "Evaluative conversations as an AI-resilient, effective and inclusive form of assessment", "authors": "Ivimey-Cook ER, Nash W, de Coriolis J-C, Leggett HC, Wagstaff L, Edmunds K", "year": 2026, "date": "2026-08-11", "venue": "EdArXiv preprint; submitted to Journal of Learning Development in Higher Education", "type": "preprint", "doi": "10.35542/osf.io/5fyq4_v2", "url": "https://doi.org/10.35542/osf.io/5fyq4_v2"},
-    {"title": "Pre-Arrival Motivation Among Postgraduate Taught Students Entering a United Kingdom University: An Exploration Through Self-Determination Theory", "authors": "Hayman R, Hibbs AE, Edmunds K, Polman RCJ", "year": 2026, "date": "2026-07-20", "venue": "Student Success", "type": "article", "doi": "10.63608/ssj.4042", "url": "https://doi.org/10.63608/ssj.4042", "oa_url": "https://studentsuccessjournal.org/index.php/studentsuccess/article/download/4042/1597"},
-    {"title": "Between arrival and departure: The dual first-and-final year experience of one-year Master’s students", "authors": "Sydney MC, Edmunds K", "year": 2026, "date": "2026-06-09", "venue": "Journal of Perspectives in Applied Academic Practice", "volume": "14", "issue": "2 (part 1)", "type": "article", "doi": "10.56433/ebrn7m56", "url": "https://doi.org/10.56433/ebrn7m56"},
-    {"title": "Building presentation confidence through choice and flexibility within the first-year science curriculum", "authors": "Edmunds K", "year": 2026, "date": "2026-06-09", "venue": "Journal of Perspectives in Applied Academic Practice", "volume": "14", "issue": "2 (part 2)", "type": "article", "doi": "10.56433/ab77r489", "url": "https://doi.org/10.56433/ab77r489", "oa_url": "https://jpaap.ac.uk/JPAAP/article/download/804/840"},
-    {"title": "Stretching the Student Transition: Developing a Pre-Arrival Platform to Meet the Evolving Needs of the Student Population", "authors": "Edmunds K, Harrington C, Lewis R", "year": 2025, "date": "2025-11-24", "venue": "Student Success", "volume": "16", "issue": "3", "pages": "132–139", "type": "article", "doi": "10.63608/ssj.3756", "url": "https://doi.org/10.63608/ssj.3756", "oa_url": "https://studentsuccessjournal.org/index.php/studentsuccess/article/download/3756/1557"},
-    {"title": "Student Belonging in Action", "authors": "Edmunds K, Gilani D", "year": 2025, "date": "2025-10-27", "venue": "Routledge (co-edited volume)", "type": "book", "doi": "10.4324/9781003611578", "url": "https://doi.org/10.4324/9781003611578"},
-    {"title": "Building Belonging in Biological Sciences", "authors": "Edmunds K", "year": 2025, "date": "2025-01-01", "venue": "Accessibility, Inclusivity and Diversity in Education and Beyond, Springer Nature", "pages": "17–36", "type": "book-chapter", "doi": "10.1007/978-3-031-81795-3_2", "url": "https://doi.org/10.1007/978-3-031-81795-3_2"},
-    {"title": "Developing a cross-discipline approach to building student belonging by combining the performing arts with science", "authors": "Edmunds K, Leggett HC", "year": 2025, "date": "2025", "venue": "Journal of the Foundation Year Network", "volume": "7", "pages": "70–81", "type": "article"},
-    {"title": "Active learning in the undergraduate laboratory: Giving students a safe space to experience low-stakes failure", "authors": "Edmunds K, Leggett H", "year": 2024, "date": "2024-08-17", "venue": "Open Scholarship of Teaching and Learning", "volume": "3", "issue": "2", "type": "article", "doi": "10.56230/osotl.107", "url": "https://doi.org/10.56230/osotl.107"},
-    {"title": "Engagement with online resources and widening participation status: observations from a large, diverse Foundation Year science cohort", "authors": "Edmunds K, Coriolis JD, Harrington C", "year": 2024, "date": "2024-08-06", "venue": "New Directions in the Teaching of Natural Sciences", "issue": "19", "type": "article", "doi": "10.29311/ndtns.vi19.4557", "url": "https://doi.org/10.29311/ndtns.vi19.4557"},
-    {"title": "Traversing obstacles in developing pre-arrival platforms", "authors": "Edmunds K, Lewis R", "year": 2024, "date": "2024-02-16", "venue": "Supporting the Student Journey into Higher Education, SEDA-Routledge", "pages": "24–32", "type": "book-chapter", "doi": "10.4324/9781003427575-5", "url": "https://doi.org/10.4324/9781003427575-5"},
-    {"title": "Biological Sciences: Exploring the Science of Life (multiple chapter contributions)", "authors": "Scott et al. (eds), incl. Edmunds K", "year": 2022, "date": "2022", "venue": "Oxford University Press", "type": "book-chapter"},
-    {"title": "The COVID University Challenge: A Hazard Analysis of Critical Control Points Assessment of the Return of Students to Higher Education Establishments", "authors": "Edmunds K, Bowater L, Brainard JS et al.", "year": 2021, "date": "2021-06-02", "venue": "Risk Analysis", "volume": "41", "issue": "12", "pages": "2286–2292", "type": "article", "doi": "10.1111/risa.13741", "url": "https://doi.org/10.1111/risa.13741", "oa_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/risa.13741"},
-    {"title": "Building an oasis of calm in a sea of chaos: supporting students during COVID-19 disruption", "authors": "Edmunds K, Gulliver B", "year": 2021, "date": "2021", "venue": "Journal of the Foundation Year Network", "volume": "4", "pages": "13–23", "type": "article"},
-    {"title": "Remotely teaching practical science in student kitchens", "authors": "Gulliver BS, Edmunds K", "year": 2021, "date": "2021", "venue": "Journal of the Foundation Year Network", "volume": "4", "pages": "41–51", "type": "article"},
-    {"title": "Recommendations for dealing with waste contaminated with Ebola virus: a Hazard Analysis of Critical Control Points approach", "authors": "Edmunds K, Elrahman SHA, Bell D et al.", "year": 2016, "date": "2016-03-03", "venue": "Bulletin of the World Health Organization", "volume": "94", "issue": "6", "pages": "424–432", "type": "article", "doi": "10.2471/blt.15.163931", "url": "https://doi.org/10.2471/blt.15.163931"},
-    {"title": "Presence and Persistence of Ebola or Marburg Virus in Patients and Survivors: A Rapid Systematic Review", "authors": "Brainard JS, Pond K, Hooper L, Edmunds K, Hunter PR", "year": 2016, "date": "2016-02-29", "venue": "PLoS neglected tropical diseases", "volume": "10", "issue": "2", "pages": "e0004475–e0004475", "type": "review", "doi": "10.1371/journal.pntd.0004475", "url": "https://doi.org/10.1371/journal.pntd.0004475", "oa_url": "https://journals.plos.org/plosntds/article/file?id=10.1371/journal.pntd.0004475&type=printable"},
-    {"title": "Risk factors for transmission of Ebola or Marburg virus disease: a systematic review and meta-analysis", "authors": "Brainard JS, Hooper L, Pond K, Edmunds K, Hunter PR", "year": 2015, "date": "2015-11-20", "venue": "International Journal of Epidemiology", "volume": "45", "issue": "1", "pages": "102–116", "type": "review", "doi": "10.1093/ije/dyv307", "url": "https://doi.org/10.1093/ije/dyv307", "oa_url": "https://academic.oup.com/ije/article-pdf/45/1/102/24170592/dyv307.pdf"},
-    {"title": "Hazard Analysis of Critical Control Points Assessment as a Tool to Respond to Emerging Infectious Disease Outbreaks", "authors": "Edmunds K, Hunter PR, Few R, Bell D", "year": 2013, "date": "2013-08-14", "venue": "PLoS ONE", "volume": "8", "issue": "8", "pages": "e72279–e72279", "type": "article", "doi": "10.1371/journal.pone.0072279", "url": "https://doi.org/10.1371/journal.pone.0072279", "oa_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0072279&type=printable"},
-    {"title": "Investigating Vietnam’s Ornamental Bird Trade: Implications for Transmission of Zoonoses", "authors": "Edmunds K, Roberton SI, Few R, Mahood SP, Bui PL, Hunter PR, Bell D", "year": 2011, "date": "2011-03-01", "venue": "EcoHealth", "volume": "8", "issue": "1", "pages": "63–75", "type": "article", "doi": "10.1007/s10393-011-0691-0", "url": "https://doi.org/10.1007/s10393-011-0691-0"},
-    {"title": "Avian influenza, the wild bird trade and local livelihoods : an interdisciplinary and mixed-methods approach", "authors": "Edmunds K", "year": 2011, "date": "2011-01-01", "venue": "UEA Digital Repository (University of East Anglia)", "type": "dissertation", "url": "https://ueaeprints.uea.ac.uk/36341/1/2011EdmundsKLPhD.pdf"},
-    {"title": "Avian Influenza H5N1 and the Wild Bird Trade in Hanoi, Vietnam", "authors": "Brooks-Moizer F, Roberton SI, Edmunds K, Bell D", "year": 2009, "date": "2009-01-01", "venue": "Ecology and Society", "volume": "14", "issue": "1", "type": "article", "doi": "10.5751/es-02760-140128", "url": "https://doi.org/10.5751/es-02760-140128", "oa_url": "https://www.ecologyandsociety.org/vol14/iss1/art28/ES-2008-2760.pdf"},
-    {"title": "Causes of mortality in free-living Mauritian pink pigeons Columba mayeri, 2002–2006", "authors": "Bunbury N, Stidworthy M, Greenwood A, Jones C, Sawmy S, Cole RE, Edmunds K, Bell D", "year": 2008, "date": "2008-03-11", "venue": "Endangered Species Research", "volume": "9", "pages": "213–220", "type": "article", "doi": "10.3354/esr00088", "url": "https://doi.org/10.3354/esr00088", "oa_url": "https://www.int-res.com/articles/esr2009/9/n009p213.pdf"},
-    {"title": "Restoring avian island endemics: use of supplementary food by the endangered Pink Pigeon (Columba mayeri)", "authors": "Edmunds K, Bunbury N, Sawmy S, Jones CG, Bell D", "year": 2008, "date": "2008-03-01", "venue": "Emu - Austral Ornithology", "volume": "108", "issue": "1", "pages": "74–80", "type": "article", "doi": "10.1071/mu06056", "url": "https://doi.org/10.1071/mu06056"}
+    {"title":"A qualitative study of pre-arrival nervousness among postgraduate taught students entering a United Kingdom university","authors":"Hayman R, Hibbs AE, Edmunds K, Polman RCJ","year":2026,"date":"2026-11-27","venue":"Studies in Graduate and Postdoctoral Education","pages":"1–21","type":"article","doi":"10.1108/sgpe-02-2026-0033","url":"https://doi.org/10.1108/sgpe-02-2026-0033","people":["Rick Hayman","Angela E. Hibbs","Kelly Edmunds","Remco C. J. Polman"]},
+    {"title":"‘We Belong Here Too’: Assessing Postgraduate Taught Satisfaction Across Three UK Higher Education Institutions","authors":"Ivimey-Cook ER, Bell E, Hibbs AE, Strudwick K, Edmunds K","year":2026,"date":"2026-09-03","venue":"EdArXiv preprint; submitted to Student Success","type":"preprint","doi":"10.35542/osf.io/twdqs_v1","url":"https://doi.org/10.35542/osf.io/twdqs_v1","oa_url":"https://ueaeprints.uea.ac.uk/id/eprint/104453/1/PGT_manuscript_pre-print.pdf","people":["Kelly Edmunds","Edward R. Ivimey‐Cook","Ellen Bell","Angela E. Hibbs","Kate Strudwick"]},
+    {"title":"Evaluative conversations as an AI-resilient, effective and inclusive form of assessment","authors":"Ivimey-Cook ER, Nash W, de Coriolis J-C, Leggett HC, Wagstaff L, Edmunds K","year":2026,"date":"2026-08-03","venue":"EdArXiv preprint; submitted to Journal of Learning Development in Higher Education","type":"preprint","doi":"10.35542/osf.io/5fyq4_v2","url":"https://doi.org/10.35542/osf.io/5fyq4_v2","oa_url":"https://ueaeprints.uea.ac.uk/id/eprint/104460/1/EC_MS_Submitted_Manuscript_EdArXiv.pdf","people":["Edward R. Ivimey‐Cook","Will Nash","Jean‐Charles de Coriolis","Helen C. Leggett","Laura Wagstaff","Kelly Edmunds"]},
+    {"title":"Pre-Arrival Motivation Among Postgraduate Taught Students Entering a United Kingdom University: An Exploration Through Self-Determination Theory","authors":"Hayman R, Hibbs AE, Edmunds K, Polman RCJ","year":2026,"date":"2026-07-20","venue":"Student Success","volume":"17","issue":"3","pages":"98–109","type":"article","doi":"10.63608/ssj.4042","url":"https://doi.org/10.63608/ssj.4042","oa_url":"https://studentsuccessjournal.org/index.php/studentsuccess/article/download/4042/1597","people":["Rick Hayman","Angela E. Hibbs","Kelly Edmunds","Remco C. J. Polman"]},
+    {"title":"Between arrival and departure: The dual first-and-final year experience of one-year Master’s students","authors":"Sydney MC, Edmunds K","year":2026,"date":"2026-06-09","venue":"Journal of Perspectives in Applied Academic Practice","volume":"14","issue":"2 (part 1)","type":"article","doi":"10.56433/ebrn7m56","url":"https://doi.org/10.56433/ebrn7m56","people":["Mabel C. Sydney","Kelly Edmunds"]},
+    {"title":"Building presentation confidence through choice and flexibility within the first-year science curriculum","authors":"Edmunds K","year":2026,"date":"2026-06-09","venue":"Journal of Perspectives in Applied Academic Practice","volume":"14","issue":"2 (part 2)","type":"article","doi":"10.56433/ab77r489","url":"https://doi.org/10.56433/ab77r489","oa_url":"https://jpaap.ac.uk/JPAAP/article/download/804/840","people":["Kelly Edmunds"]},
+    {"title":"Stretching the Student Transition: Developing a Pre-Arrival Platform to Meet the Evolving Needs of the Student Population","authors":"Edmunds K, Harrington C, Lewis R","year":2025,"date":"2025-11-25","venue":"Student Success","volume":"16","issue":"3","pages":"132–139","type":"article","doi":"10.63608/ssj.3756","url":"https://doi.org/10.63608/ssj.3756","oa_url":"https://studentsuccessjournal.org/index.php/studentsuccess/article/download/3756/1557","people":["Kelly Edmunds","Rebecca Lewis","Carl Harrington"]},
+    {"title":"Student Belonging in Action: Practical Case Studies to Foster a Sense of Belonging Across the Higher Education Student Journey","authors":"Edmunds K, Gilani D","year":2025,"date":"2025-10-27","venue":"Routledge (co-edited volume)","type":"book","doi":"10.4324/9781003611578","url":"https://doi.org/10.4324/9781003611578","people":["Kelly Edmunds","David Gilani"]},
+    {"title":"Building Belonging in Biological Sciences","authors":"Edmunds K","year":2025,"date":"2025-03-21","venue":"Accessibility, Inclusivity and Diversity in Education and Beyond, Springer Nature","volume":"8","pages":"17–36","type":"book-chapter","doi":"10.1007/978-3-031-81795-3_2","url":"https://doi.org/10.1007/978-3-031-81795-3_2","people":["Kelly Edmunds"]},
+    {"title":"Active learning in the undergraduate laboratory: Giving students a safe space to experience low-stakes failure","authors":"Edmunds K, Leggett HC","year":2024,"date":"2024-08-17","venue":"Open Scholarship of Teaching and Learning","volume":"3","issue":"2","type":"article","doi":"10.56230/osotl.107","url":"https://doi.org/10.56230/osotl.107","oa_url":"https://osotl.org/index.php/osotl/article/download/107/128","people":["Kelly Edmunds","Helen C. Leggett"]},
+    {"title":"Engagement with online resources and widening participation status: observations from a large, diverse Foundation Year science cohort","authors":"Edmunds K, Coriolis JD, Harrington C","year":2024,"date":"2024-08-06","venue":"New Directions in the Teaching of Natural Sciences","issue":"19","type":"article","doi":"10.29311/ndtns.vi19.4557","url":"https://doi.org/10.29311/ndtns.vi19.4557","people":["Kelly Edmunds","Jean‐Charles de Coriolis","Carl Harrington"]},
+    {"title":"Traversing obstacles in developing pre-arrival platforms","authors":"Edmunds K, Lewis R","year":2024,"date":"2024-02-16","venue":"Supporting the Student Journey into Higher Education, SEDA-Routledge","pages":"24–32","type":"book-chapter","doi":"10.4324/9781003427575-5","url":"https://doi.org/10.4324/9781003427575-5","people":["Kelly Edmunds","Rebecca Lewis"]},
+    {"title":"The COVID University Challenge: A Hazard Analysis of Critical Control Points Assessment of the Return of Students to Higher Education Establishments","authors":"Edmunds K, Bowater L, Brainard JS et al.","year":2021,"date":"2021-06-02","venue":"Risk Analysis","volume":"41","issue":"12","pages":"2286–2292","type":"article","doi":"10.1111/risa.13741","url":"https://doi.org/10.1111/risa.13741","oa_url":"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/risa.13741","people":["Kelly Edmunds","Laura Bowater","Julii Suzanne Brainard","Jean‐Charles de Coriolis","Iain R. Lake","Rimsha R. Malik","Lorraine Newark","Neil Ward","Kay H. Yeoman","Paul Raymond Hunter"]},
+    {"title":"Recommendations for dealing with waste contaminated with Ebola virus: a Hazard Analysis of Critical Control Points approach","authors":"Edmunds K, Elrahman SHA, Bell D et al.","year":2016,"date":"2016-03-03","venue":"Bulletin of the World Health Organization","volume":"94","issue":"6","pages":"424–432","type":"article","doi":"10.2471/blt.15.163931","url":"https://doi.org/10.2471/blt.15.163931","people":["Kelly Edmunds","Samira Hamid Abd Elrahman","Diana Bell","Julii Suzanne Brainard","Samir Dervisevic","Tsimbiri Pamela Fedha","Roger Few","Guy Howard","Iain R. Lake","Peter Maes","Joseph Wafula Matofari","Harvey A. Minnigh","Ahmed Abdalla Mohamedani","Maggie Montgomery","Sarah Morter","Edward Muchiri","Lutendo Sylvia Mudau","Benedict Mwavu Mutua","Julius Musyoka Ndambuki","Katherine Pond","Mark D. Sobsey","Mike van der Es","Mark Zeitoun","Paul Raymond Hunter"]},
+    {"title":"Presence and Persistence of Ebola or Marburg Virus in Patients and Survivors: A Rapid Systematic Review","authors":"Brainard JS, Pond K, Hooper L, Edmunds K, Hunter PR","year":2016,"date":"2016-02-29","venue":"PLoS neglected tropical diseases","volume":"10","issue":"2","pages":"e0004475–e0004475","type":"review","doi":"10.1371/journal.pntd.0004475","url":"https://doi.org/10.1371/journal.pntd.0004475","oa_url":"https://journals.plos.org/plosntds/article/file?id=10.1371/journal.pntd.0004475&type=printable","people":["Julii Suzanne Brainard","Katherine Pond","Lee Hooper","Kelly Edmunds","Paul Raymond Hunter"]},
+    {"title":"Risk factors for transmission of Ebola or Marburg virus disease: a systematic review and meta-analysis","authors":"Brainard JS, Hooper L, Pond K, Edmunds K, Hunter PR","year":2015,"date":"2015-11-20","venue":"International Journal of Epidemiology","volume":"45","issue":"1","pages":"102–116","type":"review","doi":"10.1093/ije/dyv307","url":"https://doi.org/10.1093/ije/dyv307","oa_url":"https://academic.oup.com/ije/article-pdf/45/1/102/24170592/dyv307.pdf","people":["Julii Suzanne Brainard","Lee Hooper","Katherine Pond","Kelly Edmunds","Paul Raymond Hunter"]},
+    {"title":"Hazard Analysis of Critical Control Points Assessment as a Tool to Respond to Emerging Infectious Disease Outbreaks","authors":"Edmunds K, Hunter PR, Few R, Bell D","year":2013,"date":"2013-08-14","venue":"PLoS ONE","volume":"8","issue":"8","pages":"e72279–e72279","type":"article","doi":"10.1371/journal.pone.0072279","url":"https://doi.org/10.1371/journal.pone.0072279","oa_url":"https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0072279&type=printable","people":["Kelly Edmunds","Paul Raymond Hunter","Roger Few","Diana Bell"]},
+    {"title":"Investigating Vietnam’s Ornamental Bird Trade: Implications for Transmission of Zoonoses","authors":"Edmunds K, Roberton SI, Few R, Mahood SP, Bui PL, Hunter PR, Bell D","year":2011,"date":"2011-03-01","venue":"EcoHealth","volume":"8","issue":"1","pages":"63–75","type":"article","doi":"10.1007/s10393-011-0691-0","url":"https://doi.org/10.1007/s10393-011-0691-0","people":["Kelly Edmunds","Scott I. Roberton","Roger Few","Simon P. Mahood","Phuong L. Bui","Paul Raymond Hunter","Diana Bell"]},
+    {"title":"Avian influenza, the wild bird trade and local livelihoods : an interdisciplinary and mixed-methods approach","authors":"Edmunds K","year":2011,"date":"2011-01-01","venue":"UEA Digital Repository (University of East Anglia)","type":"dissertation","url":"https://ueaeprints.uea.ac.uk/36341/1/2011EdmundsKLPhD.pdf","people":["Kelly Edmunds"]},
+    {"title":"Avian Influenza H5N1 and the Wild Bird Trade in Hanoi, Vietnam","authors":"Brooks-Moizer F, Roberton SI, Edmunds K, Bell D","year":2009,"date":"2009-01-01","venue":"Ecology and Society","volume":"14","issue":"1","type":"article","doi":"10.5751/es-02760-140128","url":"https://doi.org/10.5751/es-02760-140128","oa_url":"https://www.ecologyandsociety.org/vol14/iss1/art28/ES-2008-2760.pdf","people":["F. Brooks-Moizer","Scott I. Roberton","Kelly Edmunds","Diana Bell"]},
+    {"title":"Causes of mortality in free-living Mauritian pink pigeons Columba mayeri, 2002–2006","authors":"Bunbury N, Stidworthy MF, Greenwood AG, Jones C, Sawmy S, Cole RE, Edmunds K, Bell D","year":2008,"date":"2008-03-11","venue":"Endangered Species Research","volume":"9","pages":"213–220","type":"article","doi":"10.3354/esr00088","url":"https://doi.org/10.3354/esr00088","oa_url":"https://www.int-res.com/articles/esr2009/9/n009p213.pdf","people":["Nancy Bunbury","Mark Frederick Stidworthy","Andrew G. Greenwood","CG Jones","Shivananden Sawmy","Ruth E. Cole","Kelly Edmunds","DJ Bell"]},
+    {"title":"Restoring avian island endemics: use of supplementary food by the endangered Pink Pigeon (Columba mayeri)","authors":"Edmunds K, Bunbury N, Sawmy S, Jones CG, Bell D","year":2008,"date":"2008-03-01","venue":"Emu - Austral Ornithology","volume":"108","issue":"1","pages":"74–80","type":"article","doi":"10.1071/mu06056","url":"https://doi.org/10.1071/mu06056","people":["Kelly Edmunds","Nancy Bunbury","Shivananden Sawmy","Carl G. Jones","Diana Bell"]}
   ];
 
   load();

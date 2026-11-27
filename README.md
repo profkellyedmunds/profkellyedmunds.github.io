@@ -23,7 +23,9 @@ Research and enhancement projects, including the multi-institutional PGT student
 Her 2025 National Teaching Fellowship and Collaborative Award for Teaching Excellence (Advance HE), other awards and nominations, and funding received.
 
 ### Publications
-Peer-reviewed articles, books, book chapters, preprints and work in progress, with search and filters by type. The list updates itself from OpenAlex using Kelly's ORCID (0000-0001-5351-3721), so new papers appear automatically.
+Peer-reviewed articles, books, book chapters, preprints and work in progress, with search and filters by type. The list updates itself from OpenAlex using Kelly's ORCID (0000-0001-5351-3721), so new papers appear automatically. Duplicate records are merged: a preprint or repository copy gives way to the published version, but two published papers with different DOIs are always kept apart. If OpenAlex can't be reached, a saved copy of the list is shown instead.
+
+A co-author map sits in the top right of the tab, drawn from the same list. Each dot is a co-author, joined to others they have shared a paper with. Bigger dots mean more papers with Kelly, and the colour shows the research strand: jade for higher education, peach for public health, sage for ecology and conservation. Clicking a person lists the papers in common, and clicking a title jumps to it in the list. Work in progress is left off the map.
 
 ### Writing
 The co-edited book *Student Belonging in Action* (Routledge, 2025), her contributions to the Oxford University Press textbook *Biological Sciences: Exploring the Science of Life*, and commentary and blog pieces for THE Campus, Wonkhe, SEDA and the Centre for Belonging in Education.
